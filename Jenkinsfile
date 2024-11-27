@@ -7,6 +7,7 @@ pipeline {
         script {
           git credentialsId: 'git', url: 'https://github.com/Packiaraj85/javafirst.git'
           sh 'pwd'
+          sh 'ls -lart'
         }
       }
     }
