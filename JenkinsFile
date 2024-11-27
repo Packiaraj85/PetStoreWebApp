@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('code') {
+            steps {
+                script{
+                    echo 'code'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script{
+                    echo 'Build'
+                }
+            }
+        }
+        stage('Tests') {
+            parallel{
+                stage('nested loop1') {
+                    stages{
+                        stage('Test A'){
+                            steps{
+                                script{
+                                    echo("Test A")
+                                }
+                            }
+                        }
+                        stage('Test B'){
+                            steps{
+                                script{
+                                    echo('Test B')
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('nested loop2'){
+                    stages{
+                        stage('Test F'){
+                        steps{
+                            script{
+                                echo('Test F')
+                            }
+                        }
+                    }
+                        stage('Test M'){
+                        steps{
+                            script{
+                                echo('Test M')
+                            }
+                        }
+                    }
+                    }
+                }
+                stage('Test D'){
+                    steps{
+                        script{
+                            echo('Test D')
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps{
+                script{
+                    echo('Deploy')                
+                }
+            }
+        }
+    }
+
+}
