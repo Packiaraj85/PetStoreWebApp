@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tool name: 'maven', type: 'maven'
+  tool name: 'java', type: 'jdk'
+  tool name: 'Default', type: 'git'
   stages {
 
     stage('clone') {
@@ -20,7 +23,7 @@ pipeline {
             stage('Stage 2') {
               steps {
                 script {
-                  echo 'Stage 2'
+                  sh 'mvn clean package'
                   sh 'sleep 20'
                 }
               }
