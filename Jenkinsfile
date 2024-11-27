@@ -2,10 +2,10 @@ pipeline {
   agent any
   stages {
 
-    stage('Stage 1') {
+    stage('clone') {
       steps {
         script {
-          echo 'This whole pipeline will take ~40sec to finish.'
+          git credentialsId: 'git', url: 'https://github.com/Packiaraj85/javafirst.git'
         }
       }
     }
