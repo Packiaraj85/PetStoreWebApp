@@ -2,17 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('code') {
+        stage('repo_locaion') {
             steps {
                 script{
-                    echo 'code'
+                    sh 'ls -lart'
                 }
             }
         }
         stage('Build') {
             steps {
                 script{
-                    echo 'Build'
+                    sh 'mvn clean package'
                 }
             }
         }
@@ -38,10 +38,10 @@ pipeline {
                 }
                 stage('nested loop2'){
                     stages{
-                        stage('Test F'){
+                        stage('Test'){
                         steps{
                             script{
-                                echo('Test F')
+                                sh 'mvn test'
                             }
                         }
                     }
