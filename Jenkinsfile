@@ -2,11 +2,10 @@ pipeline {
   agent any
   stages {
 
-    stage('clone') {
+    stage('checkout clone') {
       steps {
         script {
           git credentialsId: 'git', url: 'https://github.com/Packiaraj85/javafirst.git'
-          sh 'ls -lart'
         }
       }
     }
@@ -23,20 +22,20 @@ pipeline {
                 }
               }
             }
-            stage('Test') {
+            stage('deploy') {
               steps {
                 script {
-                  sh 'mvn test'
+                  sh 'mvn install'
                 }
               }
             }
           }
         }
 
-        stage('Deploy') {
+        stage('Test') {
           steps {
             script {
-              sh 'mvn instal'
+              sh 'mvn test'
             }
           }
         }
